@@ -27,4 +27,10 @@ export class AuthService {
       accessToken: this.jwtService.sign({ sub, email }),
     };
   }
+
+  async getProfile (id: number) {
+    return await firstValueFrom(
+      this.usersServiceClient.send('findOneUser', id),
+    );
+  }
 }

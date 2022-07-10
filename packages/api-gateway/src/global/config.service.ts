@@ -13,10 +13,26 @@ export class ConfigService {
         port: this.getNumber('API_GATEWAY_PORT'),
       },
 
+      chatsService: {
+        options: {
+          port: this.getNumber('API_SERVICE_CHATS_PORT'),
+          host: this.get('API_SERVICE_CHATS_HOST'),
+        },
+        transport: Transport.TCP,
+      },
+
       usersService: {
         options: {
           port: this.getNumber('API_SERVICE_USERS_PORT'),
           host: this.get('API_SERVICE_USERS_HOST'),
+        },
+        transport: Transport.TCP,
+      },
+
+      videosService: {
+        options: {
+          port: this.getNumber('API_SERVICE_VIDEOS_PORT'),
+          host: this.get('API_SERVICE_VIDEOS_HOST'),
         },
         transport: Transport.TCP,
       },

@@ -26,7 +26,8 @@ export class AuthController {
 
   @Get('profile')
   @ApiJwtAuth()
+  // @todo response type should be UserDto
   async getProfile (@Request() req) {
-    return req.user;
+    return this.authService.getProfile(req.user.id);
   }
 }

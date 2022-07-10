@@ -1,11 +1,11 @@
 <script setup>
-import { RouterView } from 'vue-router'
+import PageView from "@/components/PageView.vue";
 </script>
 
 <template>
-  <RouterView />
+  <PageView />
 </template>
 
 <style>
-@import '@/styles/main.scss';
+@import "@/styles/main.scss";
 </style>

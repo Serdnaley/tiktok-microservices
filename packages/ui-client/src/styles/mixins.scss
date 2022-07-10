@@ -1,0 +1,33 @@
+@mixin button-transition-scale ($scaling: .9) {
+  cursor: pointer;
+  transition: transform .1s ease;
+  transform: scale(1);
+  user-select: none;
+
+  &:active {
+    transition: 0s;
+    transform: scale($scaling);
+  }
+}
+
+@mixin scrollbar-styles {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    background: rgba(black, .05);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(black, .1);
+    border-radius: 8px;
+  }
+}
+
+@mixin scrollbar-styles-none {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &::-webkit-scrollbar-thumb {
+    display: none;
+  }
+}
