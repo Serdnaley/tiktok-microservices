@@ -1,0 +1,7 @@
+{
+  "name": "microservices-test",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}
