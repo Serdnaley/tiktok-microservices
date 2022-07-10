@@ -1,5 +1,5 @@
-import { ApiOkResponse } from '@nestjs/swagger';
 import { applyDecorators } from '@nestjs/common';
+import { ApiOkResponse } from '@nestjs/swagger';
 
 export const ApiEmptySuccessResponse = () =>
   applyDecorators(

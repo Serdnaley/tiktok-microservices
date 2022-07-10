@@ -1,4 +1,5 @@
-import { ApiOperation } from '@nestjs/swagger';
 import { applyDecorators } from '@nestjs/common';
+import { ApiOperation } from '@nestjs/swagger';
 
-export const ApiSummary = (summary: string) => applyDecorators(ApiOperation({ summary }));
+export const ApiSummary = (summary: string) => applyDecorators(
+  ApiOperation({ summary }));

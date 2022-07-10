@@ -1,17 +1,19 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { User } from '../users/models/user.model';
-import { UsersService } from '../users/users.service';
+import { ClientProxy } from '@nestjs/microservices';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable()
 export class AuthService {
   constructor (
-    private readonly usersService: UsersService,
+    @Inject('USERS_SERVICE') private readonly usersServiceClient: ClientProxy,
     private readonly jwtService: JwtService,
   ) {}
 
-  async validateUser (email: string, pass: string): Promise<User | null> {
-    const user = await this.usersService.findOneByEmail(email);
+  async validateUser (email: string, pass: string): Promise<Record<string, any> | null> {
+    const user = await firstValueFrom(
+      this.usersServiceClient.send('findOneUserByEmail', email),
+    );
 
     if (user && user.password === pass) {
       return user;
