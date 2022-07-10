@@ -1,7 +1,7 @@
 import { applyDecorators, UseGuards } from '@nestjs/common';
 
-import { JwtAuthGuard } from '../guards/jwt-auth.guard';
+import { LocalAuthGuard } from '../guards/local-auth.guard';
 
 export const ApiLocalAuth = () => applyDecorators(
-  UseGuards(new JwtAuthGuard()),
+  UseGuards(new LocalAuthGuard()),
 );
