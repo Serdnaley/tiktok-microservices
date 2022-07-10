@@ -1,9 +1,9 @@
-import { Model, Table, ForeignKey } from 'sequelize-typescript'
-import { User } from './user.model'
-import { File } from './file.model'
+import { ForeignKey, Model, Table } from 'sequelize-typescript';
+import { User } from '../../users/models/user.model';
+import { File } from './file.model';
 
 @Table({
-  timestamps: true
+  timestamps: true,
 })
 export class Video extends Model {
   @ForeignKey(() => User)

@@ -20,6 +20,10 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
+      password: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       blockedAt: {
         type: Sequelize.DATE,
         allowNull: true,
@@ -105,9 +109,9 @@ module.exports = {
           model: {
             tableName: 'Users',
           },
-          key: 'id'
+          key: 'id',
         },
-        allowNull: false
+        allowNull: false,
       },
       chatId: {
         type: Sequelize.INTEGER,
@@ -115,9 +119,9 @@ module.exports = {
           model: {
             tableName: 'Chats',
           },
-          key: 'id'
+          key: 'id',
         },
-        allowNull: false
+        allowNull: false,
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -146,9 +150,9 @@ module.exports = {
           model: {
             tableName: 'Users',
           },
-          key: 'id'
+          key: 'id',
         },
-        allowNull: false
+        allowNull: false,
       },
       chatId: {
         type: Sequelize.INTEGER,
@@ -156,9 +160,9 @@ module.exports = {
           model: {
             tableName: 'Chats',
           },
-          key: 'id'
+          key: 'id',
         },
-        allowNull: false
+        allowNull: false,
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -187,9 +191,9 @@ module.exports = {
           model: {
             tableName: 'Chats',
           },
-          key: 'id'
+          key: 'id',
         },
-        allowNull: false
+        allowNull: false,
       },
       name: {
         type: Sequelize.STRING,
@@ -217,5 +221,5 @@ module.exports = {
     await queryInterface.dropTable('Files');
     await queryInterface.dropTable('Chats');
     await queryInterface.dropTable('Users');
-  }
+  },
 };

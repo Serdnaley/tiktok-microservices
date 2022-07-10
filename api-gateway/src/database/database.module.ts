@@ -1,8 +1,6 @@
-import { Module } from '@nestjs/common'
-import { SequelizeModule } from '@nestjs/sequelize'
-import { User } from './models/user.model'
-import { Video } from './models/video.model'
-import { Dialect } from 'sequelize'
+import { Module } from '@nestjs/common';
+import { SequelizeModule } from '@nestjs/sequelize';
+import { Dialect } from 'sequelize';
 
 const {
   DATABASE_DIALECT,
@@ -11,7 +9,7 @@ const {
   DATABASE_USERNAME,
   DATABASE_PASSWORD,
   DATABASE_DATABASE,
-} = process.env
+} = process.env;
 
 @Module({
   imports: [
@@ -22,10 +20,8 @@ const {
       username: DATABASE_USERNAME,
       password: DATABASE_PASSWORD,
       database: DATABASE_DATABASE,
-      models: [
-        User,
-        Video,
-      ],
+      autoLoadModels: true,
+      synchronize: true,
     }),
   ],
 })

@@ -1,7 +1,7 @@
-import { Column, Model, Table } from 'sequelize-typescript'
+import { Column, Model, Table } from 'sequelize-typescript';
 
 @Table({
-  timestamps: true
+  timestamps: true,
 })
 export class File extends Model {
   @Column

@@ -7,7 +7,7 @@ const {
   DATABASE_USERNAME,
   DATABASE_PASSWORD,
   DATABASE_DATABASE,
-} = process.env
+} = process.env;
 
 module.exports = {
   dialect: DATABASE_DIALECT,
@@ -16,16 +16,4 @@ module.exports = {
   username: DATABASE_USERNAME,
   password: DATABASE_PASSWORD,
   database: DATABASE_DATABASE,
-  // development: {
-  //   dialect: 'sqlite',
-  //   storage: '../../cache/database.sqlite',
-  // },
-  // test: {
-  //   dialect: 'sqlite',
-  //   storage: '../../cache/database.sqlite',
-  // },
-  // production: {
-  //   dialect: 'sqlite',
-  //   storage: '../../cache/database.sqlite',
-  // },
-}
+};
