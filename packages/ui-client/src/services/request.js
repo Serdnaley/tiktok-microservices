@@ -2,7 +2,7 @@ import { useAuthStore } from '../stores/auth';
 
 const { VITE_APP_API_URL: baseUrl } = import.meta.env;
 
-export const request = async (method, url, payload) => {
+const prepareData = (method, url, payload) => {
   const endpoint = new URL([
     ...new URL(baseUrl).pathname.split('/'),
     ...url.split('/'),
@@ -18,7 +18,23 @@ export const request = async (method, url, payload) => {
     body = JSON.stringify(payload);
   }
 
-  const { accessToken } = useAuthStore()
+  return {
+    endpoint,
+    body,
+  }
+}
+
+export const request = async (method, url, payload) => {
+  const {
+    endpoint,
+    body,
+  } = prepareData(method, url, payload);
+
+  const {
+    accessToken,
+    logout,
+  } = useAuthStore()
+
   const res = await fetch(endpoint.toString(), {
     headers: {
       'Content-Type': 'application/json',
@@ -28,6 +44,11 @@ export const request = async (method, url, payload) => {
     body,
   });
   if (!res) return null;
+
+  if (res.status === 401) {
+    await logout()
+    return null
+  }
 
   const data = res.status.toString().startsWith('2') ? await res.json() : {};
 

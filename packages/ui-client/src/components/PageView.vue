@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import AppLoading from "@/components/AppLoading.vue";
+import Menu from './Menu.vue';
 
 const isLoading = ref(false);
 </script>
@@ -17,6 +18,8 @@ const isLoading = ref(false);
       </template>
     </transition>
   </router-view>
+
+  <Menu />
 </template>
 
 <style lang="scss">
