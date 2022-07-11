@@ -21,8 +21,8 @@ const prepareData = (method, url, payload) => {
   return {
     endpoint,
     body,
-  }
-}
+  };
+};
 
 export const request = async (method, url, payload) => {
   const {
@@ -33,7 +33,7 @@ export const request = async (method, url, payload) => {
   const {
     accessToken,
     logout,
-  } = useAuthStore()
+  } = useAuthStore();
 
   const res = await fetch(endpoint.toString(), {
     headers: {
@@ -46,8 +46,8 @@ export const request = async (method, url, payload) => {
   if (!res) return null;
 
   if (res.status === 401) {
-    await logout()
-    return null
+    await logout();
+    return null;
   }
 
   const data = res.status.toString().startsWith('2') ? await res.json() : {};

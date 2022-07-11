@@ -10,7 +10,10 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async validateUser (email: string, pass: string): Promise<Record<string, any> | null> {
+  async validateUser (
+    email: string,
+    pass: string,
+  ): Promise<Record<string, any> | null> {
     const user = await firstValueFrom(
       this.usersServiceClient.send('findOneUserByEmail', email),
     );

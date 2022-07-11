@@ -21,7 +21,7 @@ const swiper = ref(null);
 
 watch(isMuted, () => {
   swiper.value.slides[swiper.value.activeIndex].querySelector('video').muted = isMuted.value;
-})
+});
 
 const onSlideChange = ($event) => {
   swiper.value = $event;
@@ -39,8 +39,8 @@ const onSlideChange = ($event) => {
 <template>
   <div class="VideosSlider">
     <div class="VideosSlider__sound-icon" @click="isMuted = !isMuted">
-      <IconSoundOff v-if="isMuted" />
-      <IconSoundOn v-else />
+      <IconSoundOff v-if="isMuted"/>
+      <IconSoundOn v-else/>
     </div>
 
     <div
@@ -111,6 +111,7 @@ const onSlideChange = ($event) => {
     height: 100%;
   }
 
-  &__slide {}
+  &__slide {
+  }
 }
 </style>

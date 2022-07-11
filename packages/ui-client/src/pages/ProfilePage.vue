@@ -4,11 +4,11 @@ import { storeToRefs } from 'pinia';
 import { useVideosStore } from '../stores/videos';
 import Button from '../components/Button.vue';
 
-const { profile } = storeToRefs(useAuthStore())
-const { videos, total, isLoading } = storeToRefs(useVideosStore())
-const { fetchVideos, loadMore } = useVideosStore()
+const { profile } = storeToRefs(useAuthStore());
+const { videos, total, isLoading } = storeToRefs(useVideosStore());
+const { fetchVideos, loadMore } = useVideosStore();
 
-fetchVideos()
+fetchVideos();
 </script>
 
 <template>

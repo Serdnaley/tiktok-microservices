@@ -1,21 +1,21 @@
 <script setup>
 import { useRouter } from 'vue-router';
 import { reactive } from 'vue';
-import InputText from "../components/InputText.vue";
+import InputText from '../components/InputText.vue';
 import Button from '../components/Button.vue';
 import { useAuthStore } from '../stores/auth';
 
-const authStore = useAuthStore()
+const authStore = useAuthStore();
 const formData = reactive({
-  email: "",
-  password: "",
+  email: '',
+  password: '',
 });
 
-const router = useRouter()
+const router = useRouter();
 const submit = async () => {
-  await authStore.login(formData)
-  await router.push({ name: 'Home' })
-}
+  await authStore.login(formData);
+  await router.push({ name: 'Home' });
+};
 </script>
 
 <template>
@@ -86,10 +86,12 @@ const submit = async () => {
         color: var(--primary-color);
         transform: translate(-3px, -2px);
       }
+
       &:nth-child(2) {
         color: var(--primary-color-2);
         transform: translate(3px, 2px);
       }
+
       &:nth-child(3) {
         color: var(--text-color);
       }

@@ -6,30 +6,30 @@ import { UpdateChatDto } from './dto/update-chat.dto';
 
 @Controller()
 export class ChatsController {
-  constructor(private readonly chatsService: ChatsService) {}
+  constructor (private readonly chatsService: ChatsService) {}
 
   @MessagePattern('createChat')
-  create(@Payload() createChatDto: CreateChatDto) {
+  create (@Payload() createChatDto: CreateChatDto) {
     return this.chatsService.create(createChatDto);
   }
 
   @MessagePattern('findAllChats')
-  findAll() {
+  findAll () {
     return this.chatsService.findAll();
   }
 
   @MessagePattern('findOneChat')
-  findOne(@Payload() id: number) {
+  findOne (@Payload() id: number) {
     return this.chatsService.findOne(id);
   }
 
   @MessagePattern('updateChat')
-  update(@Payload() updateChatDto: UpdateChatDto) {
+  update (@Payload() updateChatDto: UpdateChatDto) {
     return this.chatsService.update(updateChatDto.id, updateChatDto);
   }
 
   @MessagePattern('removeChat')
-  remove(@Payload() id: number) {
+  remove (@Payload() id: number) {
     return this.chatsService.remove(id);
   }
 }

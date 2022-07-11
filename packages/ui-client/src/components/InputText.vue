@@ -1,10 +1,10 @@
 <script setup>
-import { ref, defineProps, defineEmits, watch } from "vue";
+import { defineEmits, defineProps, ref, watch } from 'vue';
 
 const props = defineProps({
   modelValue: { type: String, required: true },
-  type: { type: String, default: "text" },
-  label: { type: String, default: "" },
+  type: { type: String, default: 'text' },
+  label: { type: String, default: '' },
   accept: { type: String, default: null },
   max: { type: String, default: null },
   maxlength: { type: String, default: null },
@@ -21,7 +21,7 @@ const props = defineProps({
 });
 
 const emit = defineEmits({
-  "update:modelValue": {
+  'update:modelValue': {
     type: String,
   },
 });
@@ -31,9 +31,9 @@ const model = ref(props.modelValue);
 watch(
   () => props.modelValue,
   (value) => (model.value = value),
-  { immediate: true }
+  { immediate: true },
 );
-watch(model, (value) => emit("update:modelValue", value));
+watch(model, (value) => emit('update:modelValue', value));
 </script>
 
 <template>

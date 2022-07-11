@@ -8,7 +8,7 @@ const { repo } = storeToRefs(useVideosStore());
 
 <template>
   <div class="VideosPage">
-    <VideosSlider :repo="repo" />
+    <VideosSlider :repo="repo"/>
   </div>
 </template>
 

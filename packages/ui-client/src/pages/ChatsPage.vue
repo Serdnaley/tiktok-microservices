@@ -27,7 +27,7 @@ if (!chats.length) {
         <h1>Chats</h1>
       </div>
 
-      <IconPlus class="ChatsPage__header-add" />
+      <IconPlus class="ChatsPage__header-add"/>
     </div>
 
     <div class="ChatsPage__list">
@@ -69,7 +69,8 @@ if (!chats.length) {
     padding: 20px;
     font-size: 24px;
 
-    &-title {}
+    &-title {
+    }
 
     &-add {
       padding: 7px;

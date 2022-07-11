@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from "vue";
-import AppLoading from "@/components/AppLoading.vue";
+import { ref } from 'vue';
+import AppLoading from '@/components/AppLoading.vue';
 import Menu from './Menu.vue';
 
 const isLoading = ref(false);
@@ -9,17 +9,17 @@ const isLoading = ref(false);
 <template>
   <router-view v-slot="{ Component }">
     <transition name="PageView__transition-default-" mode="out-in">
-      <AppLoading v-if="isLoading" />
+      <AppLoading v-if="isLoading"/>
 
       <template v-else>
         <div class="PageView__content">
-          <component :is="Component" :key="$route.path" />
+          <component :is="Component" :key="$route.path"/>
         </div>
       </template>
     </transition>
   </router-view>
 
-  <Menu />
+  <Menu/>
 </template>
 
 <style lang="scss">

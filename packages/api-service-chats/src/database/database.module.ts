@@ -6,7 +6,7 @@ import { ConfigService } from '../global/config.service';
   imports: [
     SequelizeModule.forRootAsync({
       useFactory: (configService: ConfigService) => {
-        return configService.envConfig.database
+        return configService.envConfig.database;
       },
       inject: [ConfigService],
     }),

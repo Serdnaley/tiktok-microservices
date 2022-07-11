@@ -30,7 +30,7 @@ export const useAuthStore = defineStore('auth', () => {
 
     const res = await request.get(
       '/auth/profile',
-      { accessToken: accessToken.value }
+      { accessToken: accessToken.value },
     ).catch(errorHandler);
 
     isLoading.value = false;
@@ -50,10 +50,10 @@ export const useAuthStore = defineStore('auth', () => {
   };
 
   const logout = async () => {
-    accessToken.value = null
-    profile.value = null
-    await router.push({ name: 'Login' })
-  }
+    accessToken.value = null;
+    profile.value = null;
+    await router.push({ name: 'Login' });
+  };
 
   return {
     accessToken,

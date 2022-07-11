@@ -4,23 +4,23 @@ import { UpdateVideoDto } from './dto/update-video.dto';
 
 @Injectable()
 export class VideosService {
-  create(createVideoDto: CreateVideoDto) {
+  create (createVideoDto: CreateVideoDto) {
     return 'This action adds a new video';
   }
 
-  findAll() {
+  findAll () {
     return `This action returns all videos`;
   }
 
-  findOne(id: number) {
+  findOne (id: number) {
     return `This action returns a #${id} video`;
   }
 
-  update(id: number, updateVideoDto: UpdateVideoDto) {
+  update (id: number, updateVideoDto: UpdateVideoDto) {
     return `This action updates a #${id} video`;
   }
 
-  remove(id: number) {
+  remove (id: number) {
     return `This action removes a #${id} video`;
   }
 }

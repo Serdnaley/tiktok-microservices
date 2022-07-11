@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps } from 'vue'
+import { defineProps } from 'vue';
 
 defineProps({
   size: {
@@ -13,12 +13,12 @@ defineProps({
   },
 
   iconOnly: Boolean,
-})
+});
 </script>
 
 <template>
   <button class="Button" :class="[`Button--${size}`, `Button--${styleVariant}`, iconOnly && 'Button--icon-only']">
-    <slot />
+    <slot/>
   </button>
 </template>
 

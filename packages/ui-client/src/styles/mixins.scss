@@ -1,4 +1,4 @@
-@mixin button-transition-scale ($scaling: .9) {
+@mixin button-transition-scale($scaling: .9) {
   cursor: pointer;
   transition: transform .1s ease;
   transform: scale(1);
