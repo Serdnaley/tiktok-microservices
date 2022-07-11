@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { ClientProxy } from '@nestjs/microservices';
 import { firstValueFrom } from 'rxjs';
+import * as bcrypt from 'bcryptjs';
 
 @Injectable()
 export class AuthService {
@@ -15,10 +16,13 @@ export class AuthService {
     pass: string,
   ): Promise<Record<string, any> | null> {
     const user = await firstValueFrom(
-      this.usersServiceClient.send('findOneUserByEmail', email),
+      this.usersServiceClient.send(
+        'findOneUserByEmail',
+        email.trim().toLowerCase(),
+      ),
     );
 
-    if (user && user.password === pass) {
+    if (await this.comparePassword(pass, user.password)) {
       return user;
     }
 
@@ -35,5 +39,13 @@ export class AuthService {
     return await firstValueFrom(
       this.usersServiceClient.send('findOneUser', id),
     );
+  }
+
+  public async comparePassword (password: string, hashPassword: string): Promise<boolean> {
+    return bcrypt.compare(password, hashPassword);
+  }
+
+  public async hashPassword (password: string): Promise<string> {
+    return bcrypt.hash(password, 10);
   }
 }
