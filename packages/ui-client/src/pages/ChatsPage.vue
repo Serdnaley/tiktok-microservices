@@ -31,17 +31,18 @@ if (!chats.length) {
     </div>
 
     <div class="ChatsPage__list">
-      <div
+      <router-link
         v-for="chat in chats"
         :key="chat.id"
+        :to="{ name: 'Chat', params: { chatId: chat.id } }"
         class="ChatsPage__item"
       >
-        <img :src="chat.user.avatarUrl" alt="" class="ChatsPage__item-avatar">
+        <img :src="chat.companion.avatarUrl" alt="" class="ChatsPage__item-avatar">
         <div class="ChatsPage__item-info">
-          <h1>@{{ chat.user.username }}</h1>
+          <h1>@{{ chat.companion.username }}</h1>
           <p>{{ chat.lastMessageSentAt }}</p>
         </div>
-      </div>
+      </router-link>
 
       <Button
         v-if="!isLoading && !isEnd"

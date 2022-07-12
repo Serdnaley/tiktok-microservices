@@ -1,11 +1,17 @@
 <script setup>
 import { useAuthStore } from '../stores/auth';
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 
+const route = useRoute();
 const authStore = useAuthStore();
+const viewMenu = computed(() => {
+  return authStore.profile && ['Videos', 'Chats', 'Profile'].includes(route.name)
+});
 </script>
 
 <template>
-  <div v-if="authStore.profile" class="Menu">
+  <div v-if="viewMenu" class="Menu">
     <div class="Menu__item">
       <router-link :to="{ name: 'Videos' }">
         Videos

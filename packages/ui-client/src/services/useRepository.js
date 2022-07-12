@@ -14,6 +14,13 @@ export const useRepository = ({
     },
   });
 
+  const reset = () => {
+    state.isLoading = false;
+    state.data = [];
+    state.total = null;
+    state.page = 1;
+  };
+
   const fetchData = async () => {
     state.isLoading = true;
 
@@ -39,5 +46,6 @@ export const useRepository = ({
     state,
     fetchData,
     loadMore,
+    reset,
   };
 };

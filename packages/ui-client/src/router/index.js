@@ -33,6 +33,12 @@ const router = createRouter({
       meta: { auth: true },
       component: () => import('@/pages/ChatsPage.vue'),
     },
+    {
+      path: '/chats/:chatId',
+      name: 'Chat',
+      meta: { auth: true },
+      component: () => import('@/pages/ChatPage.vue'),
+    },
   ],
 });
 
