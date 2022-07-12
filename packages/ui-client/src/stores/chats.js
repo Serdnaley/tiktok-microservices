@@ -53,6 +53,22 @@ export const useChatsStore = defineStore('chats', () => {
     isChatLoading.value = false;
   }
 
+  const createChat = async (username) => {
+    isChatLoading.value = true;
+
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    const chat = {
+      id: chatsMock.length + 1,
+      companion: makeUser(Date.now(), username),
+      lastMessageSentAt: '2022-07-10T17:46:25.669Z',
+    }
+    chatsMock.push(chat);
+
+    isChatLoading.value = false;
+
+    return chat
+  }
+
   return {
     chats,
     isLoading,
@@ -63,5 +79,6 @@ export const useChatsStore = defineStore('chats', () => {
     fetchChat,
     fetchChats,
     loadMoreChats,
+    createChat,
   };
 });

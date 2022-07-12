@@ -27,7 +27,9 @@ if (!chats.length) {
         <h1>Chats</h1>
       </div>
 
-      <IconPlus class="ChatsPage__header-add"/>
+      <router-link :to="{ name: 'ChatAdd' }">
+        <IconPlus class="ChatsPage__header-add"/>
+      </router-link>
     </div>
 
     <div class="ChatsPage__list">
