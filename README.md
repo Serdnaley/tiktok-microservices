@@ -1,4 +1,4 @@
-# [Not Ready Yet] TikTok Microservices
+# TikTok Microservices Exmaple
 
 Simple TikTok app based on microservices architecture.
 
