@@ -18,7 +18,7 @@ export class ChatsService {
   ) {}
 
   async findPaginated ({ page, limit, userId }) {
-    const total = await this.chatUserModel.count({ where: { userId } })
+    const total = await this.chatUserModel.count({ where: { userId } });
     const data = await this.chatUserModel.findAll({
       where: { userId },
       include: [{
@@ -34,7 +34,7 @@ export class ChatsService {
       }],
       limit,
       offset: (page - 1) * limit,
-    })
+    });
 
     const chats = data.map(chatUser => chatUser.chat);
 
@@ -43,7 +43,7 @@ export class ChatsService {
       page,
       data: chats,
       total,
-    }
+    };
   }
 
   async create (createChatDto: CreateChatDto) {
@@ -65,7 +65,7 @@ export class ChatsService {
         where: { userId: companionId },
         required: true,
       }],
-    })
+    });
 
     if (foundChat) {
       return await this.findOne(foundChat.id, userId);
@@ -76,9 +76,9 @@ export class ChatsService {
     await Promise.all([
       this.chatUserModel.create({ userId, chatId: chat.id }),
       this.chatUserModel.create({ userId: companionId, chatId: chat.id }),
-    ])
+    ]);
 
-    return await this.findOne(chat.id, userId)
+    return await this.findOne(chat.id, userId);
   }
 
   async findOne (id: number, userId: number) {
@@ -90,7 +90,7 @@ export class ChatsService {
         model: this.messageModel,
         as: 'lastMessage',
       }],
-    })
+    });
 
     if (!chat?.chatUsers.some((chatUser) => chatUser.userId === userId)) {
       throw new NotFoundException('Chat not found');

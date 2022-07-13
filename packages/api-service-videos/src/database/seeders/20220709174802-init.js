@@ -23,8 +23,8 @@ module.exports = {
       });
     });
 
-    await queryInterface.bulkInsert('Files', files, {})
-    await queryInterface.bulkInsert('Videos', videos, {})
+    await queryInterface.bulkInsert('Files', files, {});
+    await queryInterface.bulkInsert('Videos', videos, {});
   },
 
   async down (queryInterface, Sequelize) {

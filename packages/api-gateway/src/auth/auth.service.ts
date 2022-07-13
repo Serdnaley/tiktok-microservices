@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { ClientProxy } from '@nestjs/microservices';
-import { firstValueFrom } from 'rxjs';
 import * as bcrypt from 'bcryptjs';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable()
 export class AuthService {
@@ -41,7 +41,10 @@ export class AuthService {
     );
   }
 
-  public async comparePassword (password: string, hashPassword: string): Promise<boolean> {
+  public async comparePassword (
+    password: string,
+    hashPassword: string,
+  ): Promise<boolean> {
     return bcrypt.compare(password, hashPassword);
   }
 

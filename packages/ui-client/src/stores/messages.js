@@ -13,7 +13,7 @@ const messagesMock = Array(5000).fill(0).map((_, i) => ({
 }));
 
 export const useMessagesStore = defineStore('messages', () => {
-  const chatId = ref(null)
+  const chatId = ref(null);
   const repo = useRepository({
     async fetchData ({ page }) {
       await new Promise(resolve => setTimeout(resolve, 1000));
@@ -56,7 +56,7 @@ export const useMessagesStore = defineStore('messages', () => {
       userId: 1,
       createdAt: DateTime.local().toISO(),
     });
-  }
+  };
 
   return {
     chatId,

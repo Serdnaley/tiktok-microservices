@@ -4,9 +4,7 @@ import { ApiExtraModels, ApiTags } from '@nestjs/swagger';
 import { plainToInstance } from 'class-transformer';
 import { firstValueFrom } from 'rxjs';
 import { ApiJwtAuth } from '../auth/decorators/api-jwt-auth.decorator';
-import {
-  ApiPaginateResponse
-} from '../common/decorators/api-paginate-response.decorator';
+import { ApiPaginateResponse } from '../common/decorators/api-paginate-response.decorator';
 import { VideoDto } from './dto/video.dto';
 
 @ApiJwtAuth()

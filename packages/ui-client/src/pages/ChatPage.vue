@@ -16,7 +16,7 @@ const {
 } = storeToRefs(useChatsStore());
 const {
   fetchChat,
-} = useChatsStore()
+} = useChatsStore();
 
 watch(chatId, () => fetchChat(chatId.value), { immediate: true });
 </script>

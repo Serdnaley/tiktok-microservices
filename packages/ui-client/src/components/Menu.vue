@@ -6,7 +6,7 @@ import { useRoute } from 'vue-router';
 const route = useRoute();
 const authStore = useAuthStore();
 const viewMenu = computed(() => {
-  return authStore.profile && ['Videos', 'Chats', 'Profile'].includes(route.name)
+  return authStore.profile && ['Videos', 'Chats', 'Profile'].includes(route.name);
 });
 </script>
 

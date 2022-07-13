@@ -5,23 +5,23 @@ import Button from '../components/Button.vue';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
-const router = useRouter()
-const chatsStore = useChatsStore()
+const router = useRouter();
+const chatsStore = useChatsStore();
 
-const username = ref('')
+const username = ref('');
 const submit = async () => {
-  if (!username.value) return
-  const chat = await chatsStore.createChat(username.value)
+  if (!username.value) return;
+  const chat = await chatsStore.createChat(username.value);
 
   if (chat) {
     await router.push({
       name: 'Chat',
       params: {
         chatId: chat.id,
-      }
-    })
+      },
+    });
   }
-}
+};
 </script>
 
 <template>
@@ -36,7 +36,7 @@ const submit = async () => {
     </div>
 
     <div class="ChatPage__form">
-      <InputText v-model="username" placeholder="Enter username..." />
+      <InputText v-model="username" placeholder="Enter username..."/>
       <Button @click="submit()">
         {{ chatsStore.isChatLoading ? 'Creating...' : 'Create' }}
       </Button>

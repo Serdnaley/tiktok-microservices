@@ -1,9 +1,4 @@
-import {
-  BelongsTo,
-  Column,
-  Model,
-  Table,
-} from 'sequelize-typescript';
+import { BelongsTo, Column, Model, Table } from 'sequelize-typescript';
 import { File } from './file.model';
 
 @Table({

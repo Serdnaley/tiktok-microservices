@@ -34,7 +34,7 @@ export class AuthController {
     return {
       success: true,
       data,
-    }
+    };
   }
 
   @Get('profile')
@@ -51,6 +51,6 @@ export class AuthController {
     return {
       success: true,
       data,
-    }
+    };
   }
 }

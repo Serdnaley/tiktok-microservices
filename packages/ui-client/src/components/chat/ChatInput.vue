@@ -13,17 +13,17 @@ defineProps({
 
 const text = ref('');
 
-const isLoading = ref(false)
-const { sendMessage } = useMessagesStore()
+const isLoading = ref(false);
+const { sendMessage } = useMessagesStore();
 const submit = async () => {
-  if (!text.value) return
-  isLoading.value = true
+  if (!text.value) return;
+  isLoading.value = true;
 
-  await sendMessage(text.value)
+  await sendMessage(text.value);
 
-  isLoading.value = false
-  text.value = ''
-}
+  isLoading.value = false;
+  text.value = '';
+};
 </script>
 
 <template>

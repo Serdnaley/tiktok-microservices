@@ -10,7 +10,7 @@ const makeUser = (id, username) => ({
   blockedAt: null,
   createdAt: '2022-07-10T17:46:25.669Z',
   updatedAt: '2022-07-10T17:46:25.669Z',
-})
+});
 const chatsMock = Array(50).fill(0).map((_, i) => ({
   id: i + 1,
   companion: makeUser(2, 'user2'),
@@ -42,8 +42,8 @@ export const useChatsStore = defineStore('chats', () => {
     isEnd,
   } = toRefs(state);
 
-  const chat = ref(null)
-  const isChatLoading = ref(false)
+  const chat = ref(null);
+  const isChatLoading = ref(false);
   const fetchChat = async (id) => {
     isChatLoading.value = true;
 
@@ -51,7 +51,7 @@ export const useChatsStore = defineStore('chats', () => {
     chat.value = chatsMock.find(chat => chat.id === id);
 
     isChatLoading.value = false;
-  }
+  };
 
   const createChat = async (username) => {
     isChatLoading.value = true;
@@ -61,13 +61,13 @@ export const useChatsStore = defineStore('chats', () => {
       id: chatsMock.length + 1,
       companion: makeUser(Date.now(), username),
       lastMessageSentAt: '2022-07-10T17:46:25.669Z',
-    }
+    };
     chatsMock.push(chat);
 
     isChatLoading.value = false;
 
-    return chat
-  }
+    return chat;
+  };
 
   return {
     chats,

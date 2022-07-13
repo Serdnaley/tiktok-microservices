@@ -1,9 +1,9 @@
 import {
-  NotFoundException,
   Body,
   Controller,
   Get,
   Inject,
+  NotFoundException,
   Param,
   Post,
   Query,
@@ -62,7 +62,7 @@ export class ChatsController {
 
     await Promise.all(data.map(async (chat) => {
       return await this.transformChat(chat, req);
-    }))
+    }));
 
     return {
       success: true,

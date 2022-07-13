@@ -29,13 +29,13 @@ export class MessagesService {
       where: { chatId },
       limit,
       offset: (page - 1) * limit,
-    })
+    });
 
     return {
       limit,
       page,
       data,
       total,
-    }
+    };
   }
 }
