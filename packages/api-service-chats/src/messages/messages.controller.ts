@@ -1,7 +1,6 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { CreateMessageDto } from './dto/create-message.dto';
-import { UpdateMessageDto } from './dto/update-message.dto';
 import { MessagesService } from './messages.service';
 
 @Controller()
@@ -13,23 +12,13 @@ export class MessagesController {
     return this.messagesService.create(createMessageDto);
   }
 
-  @MessagePattern('findAllMessages')
-  findAll () {
-    return this.messagesService.findAll();
-  }
-
-  @MessagePattern('findOneMessage')
-  findOne (@Payload() id: number) {
-    return this.messagesService.findOne(id);
-  }
-
-  @MessagePattern('updateMessage')
-  update (@Payload() updateMessageDto: UpdateMessageDto) {
-    return this.messagesService.update(updateMessageDto.id, updateMessageDto);
-  }
-
-  @MessagePattern('removeMessage')
-  remove (@Payload() id: number) {
-    return this.messagesService.remove(id);
+  @MessagePattern('findMessagesByChatId')
+  findByChatId (
+    @Payload('chatId') chatId: number,
+    @Payload('page') page: number,
+    @Payload('limit') limit: number,
+    @Payload('limit') userId: number,
+  ) {
+    return this.messagesService.findByChatId({ chatId, page, limit, userId });
   }
 }

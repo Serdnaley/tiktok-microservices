@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { TcpOptions, Transport } from '@nestjs/microservices';
 import 'dotenv/config';
 import { AppModule } from './app.module';
-import { ConfigService } from './global/config.service';
+import { ConfigService } from './common/config.service';
 
 async function bootstrap () {
   const app = await NestFactory.createMicroservice<TcpOptions>(AppModule, {

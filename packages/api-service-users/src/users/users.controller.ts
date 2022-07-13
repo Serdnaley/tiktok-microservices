@@ -6,13 +6,18 @@ import { UsersService } from './users.service';
 export class UsersController {
   constructor (private readonly usersService: UsersService) {}
 
-  @MessagePattern('findOneUser')
-  findOne (@Payload() id: number) {
+  @MessagePattern('findOneUserById')
+  findOne (@Payload('id') id: number) {
     return this.usersService.findOne(id);
   }
 
   @MessagePattern('findOneUserByEmail')
-  findOneByEmail (@Payload() email: string) {
+  findOneByEmail (@Payload('email') email: string) {
     return this.usersService.findOneByEmail(email);
+  }
+
+  @MessagePattern('findOneUserByUsername')
+  findOneByUsername (@Payload('username') username: string) {
+    return this.usersService.findOneByUsername(username);
   }
 }

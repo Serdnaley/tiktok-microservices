@@ -10,10 +10,6 @@ module.exports = {
         unique: true,
         primaryKey: true,
       },
-      name: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
       createdAt: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.fn('NOW'),
@@ -80,7 +76,11 @@ module.exports = {
         },
         allowNull: false,
       },
-      name: {
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      text: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -100,8 +100,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable('Messages');
-    await queryInterface.dropTable('ChatUsers');
-    await queryInterface.dropTable('Chats');
+    await queryInterface.dropAllTables();
   },
 };

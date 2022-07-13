@@ -39,8 +39,26 @@ module.exports = {
         unique: true,
         primaryKey: true,
       },
+      title: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      description: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       userId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      fileId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: 'Files',
+          },
+          key: 'id',
+        },
         allowNull: false,
       },
       createdAt: {

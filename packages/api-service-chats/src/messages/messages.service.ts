@@ -1,26 +1,41 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
+import { ChatsService } from '../chats/chats.service';
 import { CreateMessageDto } from './dto/create-message.dto';
-import { UpdateMessageDto } from './dto/update-message.dto';
+import { Message } from './models/message.model';
 
 @Injectable()
 export class MessagesService {
-  create (createMessageDto: CreateMessageDto) {
-    return 'This action adds a new message';
+  constructor (
+    @InjectModel(Message) private readonly messageModel: typeof Message,
+    private readonly chatsService: ChatsService,
+  ) {}
+
+  async create (createMessageDto: CreateMessageDto) {
+    const { chatId, userId, text } = createMessageDto;
+
+    await this.chatsService.findOne(chatId, userId);
+
+    return this.messageModel.create({ chatId, userId, text });
   }
 
-  findAll () {
-    return `This action returns all messages`;
-  }
+  async findByChatId ({ chatId, page, limit, userId }) {
+    await this.chatsService.findOne(chatId, userId);
 
-  findOne (id: number) {
-    return `This action returns a #${id} message`;
-  }
+    const {
+      rows: data,
+      count: total,
+    } = await this.messageModel.findAndCountAll({
+      where: { chatId },
+      limit,
+      offset: (page - 1) * limit,
+    })
 
-  update (id: number, updateMessageDto: UpdateMessageDto) {
-    return `This action updates a #${id} message`;
-  }
-
-  remove (id: number) {
-    return `This action removes a #${id} message`;
+    return {
+      limit,
+      page,
+      data,
+      total,
+    }
   }
 }

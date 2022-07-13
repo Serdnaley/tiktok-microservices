@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from './database/database.module';
-import { FilesModule } from './files/files.module';
-import { GlobalModule } from './global/global.module';
+import { GlobalModule } from './common/global.module';
 import { VideosModule } from './videos/videos.module';
 
 @Module({
@@ -9,7 +8,6 @@ import { VideosModule } from './videos/videos.module';
     GlobalModule,
     DatabaseModule,
     VideosModule,
-    FilesModule,
   ],
 })
 export class AppModule {}

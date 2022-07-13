@@ -1,35 +1,25 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
-import { CreateVideoDto } from './dto/create-video.dto';
-import { UpdateVideoDto } from './dto/update-video.dto';
 import { VideosService } from './videos.service';
 
 @Controller()
 export class VideosController {
   constructor (private readonly videosService: VideosService) {}
 
-  @MessagePattern('createVideo')
-  create (@Payload() createVideoDto: CreateVideoDto) {
-    return this.videosService.create(createVideoDto);
+  @MessagePattern('findAllVideosPaginated')
+  findAllPaginated (
+    @Payload('page') page: number,
+    @Payload('limit') limit: number,
+  ) {
+    return this.videosService.findAllPaginated({ page, limit });
   }
 
-  @MessagePattern('findAllVideos')
-  findAll () {
-    return this.videosService.findAll();
-  }
-
-  @MessagePattern('findOneVideo')
-  findOne (@Payload() id: number) {
-    return this.videosService.findOne(id);
-  }
-
-  @MessagePattern('updateVideo')
-  update (@Payload() updateVideoDto: UpdateVideoDto) {
-    return this.videosService.update(updateVideoDto.id, updateVideoDto);
-  }
-
-  @MessagePattern('removeVideo')
-  remove (@Payload() id: number) {
-    return this.videosService.remove(id);
+  @MessagePattern('findVideosByUserIdPaginated')
+  findAllByUserIdPaginated (
+    @Payload('userId') userId: number,
+    @Payload('page') page: number,
+    @Payload('limit') limit: number,
+  ) {
+    return this.videosService.findAllByUserIdPaginated({ userId, page, limit });
   }
 }

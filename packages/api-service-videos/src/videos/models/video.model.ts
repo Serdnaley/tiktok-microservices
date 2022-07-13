@@ -1,5 +1,10 @@
-import { Column, ForeignKey, Model, Table } from 'sequelize-typescript';
-import { File } from '../../files/models/file.model';
+import {
+  BelongsTo,
+  Column,
+  Model,
+  Table,
+} from 'sequelize-typescript';
+import { File } from './file.model';
 
 @Table({
   timestamps: true,
@@ -8,6 +13,6 @@ export class Video extends Model {
   @Column
   userId: number;
 
-  @ForeignKey(() => File)
-  fileId: number;
+  @BelongsTo(() => File, { foreignKey: 'fileId' })
+  file: File;
 }

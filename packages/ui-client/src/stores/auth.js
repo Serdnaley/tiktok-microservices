@@ -22,7 +22,7 @@ export const useAuthStore = defineStore('auth', () => {
     const res = await request.post('/auth/login', payload).catch(errorHandler);
 
     isLoading.value = false;
-    accessToken.value = res.data.accessToken;
+    accessToken.value = res.data.data.accessToken;
   };
 
   const fetchProfile = async () => {
@@ -34,7 +34,7 @@ export const useAuthStore = defineStore('auth', () => {
     ).catch(errorHandler);
 
     isLoading.value = false;
-    profile.value = res.data;
+    profile.value = res.data.data;
 
     // @todo remove mock
     profile.value = {

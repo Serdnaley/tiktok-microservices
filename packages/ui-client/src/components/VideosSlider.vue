@@ -1,5 +1,6 @@
 <script setup>
 import { ref, watch } from 'vue';
+import { Mousewheel } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import IconSoundOn from './icons/IconSoundOn.vue';
 import IconSoundOff from './icons/IconSoundOff.vue';
@@ -54,6 +55,8 @@ const onSlideChange = ($event) => {
       v-else
       :slides-per-view="1"
       :space-between="50"
+      :mousewheel="true"
+      :modules="[Mousewheel]"
       direction="vertical"
       class="VideosSlider__slider"
       @swiper="onSlideChange"

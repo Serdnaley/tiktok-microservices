@@ -13,4 +13,8 @@ export class UsersService {
   findOneByEmail (email: string) {
     return this.userModel.findOne({ where: { email } });
   }
+
+  findOneByUsername (username: string) {
+    return this.userModel.findOne({ where: { username } });
+  }
 }

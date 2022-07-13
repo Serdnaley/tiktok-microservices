@@ -1,4 +1,4 @@
-import { Column, ForeignKey, Model, Table } from 'sequelize-typescript';
+import { Column, HasOne, Model, Table } from 'sequelize-typescript';
 import { Chat } from '../../chats/models/chat.model';
 
 @Table({
@@ -8,6 +8,9 @@ export class Message extends Model {
   @Column
   text: string;
 
-  @ForeignKey(() => Chat)
-  chatId: number;
+  @Column
+  userId: number;
+
+  @HasOne(() => Chat, { foreignKey: 'chatId' })
+  chat: Chat;
 }

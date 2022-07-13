@@ -30,7 +30,9 @@ import { ConfigService } from './config.service';
   ],
   exports: [
     ConfigService,
+    'CHATS_SERVICE',
     'USERS_SERVICE',
+    'VIDEOS_SERVICE',
   ],
 })
 export class GlobalModule {}

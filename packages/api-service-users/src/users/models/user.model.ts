@@ -11,6 +11,9 @@ export class User extends Model {
   username: string;
 
   @Column
+  avatarUrl: string;
+
+  @Column
   password: string;
 
   @Column

@@ -18,7 +18,7 @@ export class AuthService {
     const user = await firstValueFrom(
       this.usersServiceClient.send(
         'findOneUserByEmail',
-        email.trim().toLowerCase(),
+        { email: email.trim().toLowerCase() },
       ),
     );
 
@@ -37,7 +37,7 @@ export class AuthService {
 
   async getProfile (id: number) {
     return await firstValueFrom(
-      this.usersServiceClient.send('findOneUser', id),
+      this.usersServiceClient.send('findOneUserById', { id }),
     );
   }
 
