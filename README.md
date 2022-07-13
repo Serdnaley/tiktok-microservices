@@ -4,6 +4,14 @@ Simple TikTok app based on microservices architecture.
 
 Made out of boredom. But if you also think that TikTok has no chance against my masterpiece - you can use my version.
 
+## Example
+Working example available here:
+[tiktok.ley.pp.ua](https://tiktok.ley.pp.ua)
+[api.tiktok.ley.pp.ua/v1/docs](https://api.tiktok.ley.pp.ua/v1/docs)
+Test credentials:
+Email: `test@example.com`
+Password: `password`
+
 ## Setup
 
 1. `yarn install` - Install dependencies
