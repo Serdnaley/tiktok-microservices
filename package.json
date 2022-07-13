@@ -5,6 +5,7 @@
     "packages/*"
   ],
   "scripts": {
-    "db:refresh-all": "root=$(pwd); for name in users chats videos; do cd $root; cd ./packages/api-service-$name; yarn run db:refresh; done"
+    "build:all": "root=$(pwd); for name in users chats videos; do cd $root; cd ./packages/api-service-$name; yarn build; done",
+    "db:refresh:all": "root=$(pwd); for name in users chats videos; do cd $root; cd ./packages/api-service-$name; yarn run db:refresh; done"
   }
 }
