@@ -44,7 +44,9 @@ export const useChatsStore = defineStore('chats', () => {
   const fetchChat = async (id) => {
     isChatLoading.value = true;
 
-    const { data: { data } } = await request.get(`/chats/${id}`).catch(errorHandler);
+    const { data: { data } } = await request
+      .get(`/chats/${id}`)
+      .catch(errorHandler);
 
     chat.value = data;
     isChatLoading.value = false;

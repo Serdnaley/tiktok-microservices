@@ -40,10 +40,10 @@ const loadMore = async () => {
 
 const formatDate = (date) => {
   return DateTime.fromFormat(date, 'yyyy-MM-dd').toFormat('dd MMMM yyyy');
-}
+};
 const formatTime = (date) => {
   return DateTime.fromISO(date).toFormat('HH:mm');
-}
+};
 
 const containerEl = ref(null);
 const messagesByDaysProxy = ref([]);

@@ -1,6 +1,6 @@
 'use strict';
 
-const { DateTime } = require('luxon')
+const { DateTime } = require('luxon');
 
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -19,8 +19,11 @@ module.exports = {
           text: `Message ${messageId}`,
           chatId,
           userId: chatUsers[Math.floor(Math.random() * 2)].userId,
-          createdAt: DateTime.local().minus({ month: 2 }).plus({ day: Math.floor(Math.random() * 30) }).toJSDate(),
-        }
+          createdAt: DateTime.local()
+            .minus({ month: 2 })
+            .plus({ day: Math.floor(Math.random() * 30) })
+            .toJSDate(),
+        };
       });
 
       data.push({

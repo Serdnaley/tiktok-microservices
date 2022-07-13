@@ -1,4 +1,4 @@
-import { Controller, Request } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { ChatsService } from './chats.service';
 import { CreateChatDto } from './dto/create-chat.dto';

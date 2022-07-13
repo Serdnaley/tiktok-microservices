@@ -53,7 +53,7 @@ export const useMessagesStore = defineStore('messages', () => {
     });
 
     return sortByDate(groups, 'date');
-  })
+  });
 
   const errorHandler = (error) => {
     console.error(error);
