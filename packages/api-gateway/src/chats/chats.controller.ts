@@ -118,7 +118,7 @@ export class ChatsController {
     const chat = await firstValueFrom(
       this.chatsServiceClient.send(
         'findOneChatById',
-        { chatId },
+        { chatId, userId: req.user.id },
       ),
     );
     const data = await this.transformChat(chat, req);
@@ -137,7 +137,12 @@ export class ChatsController {
     @Query('page') reqPage: number,
     @Request() req,
   ) {
-    const messages = await firstValueFrom(
+    const {
+      total,
+      limit,
+      page,
+      data: messages,
+    } = await firstValueFrom(
       this.chatsServiceClient.send(
         'findMessagesByChatId',
         { chatId, page: reqPage, limit: 20, userId: req.user.id },
@@ -146,6 +151,9 @@ export class ChatsController {
 
     return {
       success: true,
+      total,
+      limit,
+      page,
       data: plainToInstance(MessageDto, messages, { excludeExtraneousValues: true }),
     };
   }

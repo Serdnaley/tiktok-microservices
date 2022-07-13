@@ -21,9 +21,7 @@ const props = defineProps({
 });
 
 const emit = defineEmits({
-  'update:modelValue': {
-    type: String,
-  },
+  'update:modelValue': String,
 });
 
 const model = ref(props.modelValue);

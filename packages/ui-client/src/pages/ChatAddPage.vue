@@ -1,5 +1,5 @@
 <script setup>
-import { useChatsStore } from '../stores/chats';
+import { useChatsStore } from '@/stores/chats';
 import InputText from '../components/InputText.vue';
 import Button from '../components/Button.vue';
 import { ref } from 'vue';
@@ -20,6 +20,8 @@ const submit = async () => {
         chatId: chat.id,
       },
     });
+  } else {
+    alert('User not found');
   }
 };
 </script>

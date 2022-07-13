@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import InputText from '../InputText.vue';
 import Button from '../Button.vue';
-import { useMessagesStore } from '../../stores/messages';
+import { useMessagesStore } from '@/stores/messages';
 
 defineProps({
   chat: {

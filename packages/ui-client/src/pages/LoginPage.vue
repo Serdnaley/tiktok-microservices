@@ -3,7 +3,7 @@ import { useRouter } from 'vue-router';
 import { reactive } from 'vue';
 import InputText from '../components/InputText.vue';
 import Button from '../components/Button.vue';
-import { useAuthStore } from '../stores/auth';
+import { useAuthStore } from '@/stores/auth';
 
 const authStore = useAuthStore();
 const formData = reactive({

@@ -1,7 +1,7 @@
 <script setup>
 import { useRoute } from 'vue-router';
 import { computed, watch } from 'vue';
-import { useChatsStore } from '../stores/chats';
+import { useChatsStore } from '@/stores/chats';
 import ChatHeader from '@/components/chat/ChatHeader.vue';
 import ChatMessages from '@/components/chat/ChatMessages.vue';
 import ChatInput from '@/components/chat/ChatInput.vue';

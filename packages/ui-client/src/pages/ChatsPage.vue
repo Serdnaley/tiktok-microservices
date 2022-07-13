@@ -1,11 +1,11 @@
 <script setup>
 import { storeToRefs } from 'pinia';
-import { useChatsStore } from '../stores/chats';
+import { useChatsStore } from '@/stores/chats';
 import IconPlus from '../components/icons/IconPlus.vue';
 import Button from '../components/Button.vue';
 
 const {
-  chats,
+  chatsSorted,
   isLoading,
   isEnd,
 } = storeToRefs(useChatsStore());
@@ -15,7 +15,7 @@ const {
   loadMoreChats,
 } = useChatsStore();
 
-if (!chats.length) {
+if (!chatsSorted.length) {
   fetchChats();
 }
 </script>
@@ -34,15 +34,15 @@ if (!chats.length) {
 
     <div class="ChatsPage__list">
       <router-link
-        v-for="chat in chats"
+        v-for="chat in chatsSorted"
         :key="chat.id"
         :to="{ name: 'Chat', params: { chatId: chat.id } }"
         class="ChatsPage__item"
       >
         <img :src="chat.companion.avatarUrl" alt="" class="ChatsPage__item-avatar">
         <div class="ChatsPage__item-info">
-          <h1>@{{ chat.companion.username }}</h1>
-          <p>{{ chat.lastMessageSentAt }}</p>
+          <h3>@{{ chat.companion.username }}</h3>
+          <p>{{ chat.lastMessage?.text }}</p>
         </div>
       </router-link>
 
@@ -111,6 +111,18 @@ if (!chats.length) {
       width: 50px;
       object-fit: cover;
       border-radius: 50%;
+    }
+
+    &-info {
+      h3, p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      p {
+        color: var(--text-color-secondary);
+      }
     }
   }
 }

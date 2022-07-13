@@ -1,30 +1,19 @@
 import { defineStore } from 'pinia';
-import { useRepository } from '../services/useRepository';
-import { ref, toRefs } from 'vue';
-
-const makeUser = (id, username) => ({
-  id,
-  email: username + '@example.com',
-  avatarUrl: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80',
-  username,
-  blockedAt: null,
-  createdAt: '2022-07-10T17:46:25.669Z',
-  updatedAt: '2022-07-10T17:46:25.669Z',
-});
-const chatsMock = Array(50).fill(0).map((_, i) => ({
-  id: i + 1,
-  companion: makeUser(2, 'user2'),
-  lastMessageSentAt: '2022-07-10T17:46:25.669Z',
-}));
+import { useRepository } from '@/services/useRepository';
+import { computed, ref, toRefs } from 'vue';
+import { request } from '@/services/request';
+import { sortByDate } from '@/utils/date';
 
 export const useChatsStore = defineStore('chats', () => {
   const repo = useRepository({
     async fetchData ({ page }) {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      const limit = 20;
+      const {
+        data: { data, total },
+      } = await request.get('/chats', { page });
+
       return {
-        total: chatsMock.length,
-        data: chatsMock.slice((page - 1) * limit, page * limit),
+        data,
+        total,
       };
     },
   });
@@ -42,35 +31,41 @@ export const useChatsStore = defineStore('chats', () => {
     isEnd,
   } = toRefs(state);
 
+  const chatsSorted = computed(() => sortByDate(chats.value, ['lastMessage', 'createdAt'], 'DESC'));
+
+  const errorHandler = (error) => {
+    console.error(error);
+    alert('Something went wrong');
+    throw error;
+  };
+
   const chat = ref(null);
   const isChatLoading = ref(false);
   const fetchChat = async (id) => {
     isChatLoading.value = true;
 
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    chat.value = chatsMock.find(chat => chat.id === id);
+    const { data: { data } } = await request.get(`/chats/${id}`).catch(errorHandler);
 
+    chat.value = data;
     isChatLoading.value = false;
   };
 
   const createChat = async (username) => {
     isChatLoading.value = true;
 
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    const chat = {
-      id: chatsMock.length + 1,
-      companion: makeUser(Date.now(), username),
-      lastMessageSentAt: '2022-07-10T17:46:25.669Z',
-    };
-    chatsMock.push(chat);
+    username = username.replaceAll(/[^a-z\d_.]/ig, '');
+    const { data: { data } } = await request
+      .post('/chats', { username })
+      .catch(errorHandler);
 
     isChatLoading.value = false;
 
-    return chat;
+    return data;
   };
 
   return {
     chats,
+    chatsSorted,
     isLoading,
     total,
     isEnd,

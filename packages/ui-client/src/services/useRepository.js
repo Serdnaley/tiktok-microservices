@@ -10,7 +10,7 @@ export const useRepository = ({
     page: 1,
 
     get isEnd () {
-      return this.total && this.data && this.data.length >= this.total;
+      return this.total !== null && this.data && this.data.length >= this.total;
     },
   });
 

@@ -20,9 +20,7 @@ export const fract = (num) => {
   return 0;
 };
 
-export const dot = (a, b) =>
-  a.map((x, i) => a[i] * b[i])
-    .reduce((m, n) => m + n);
+export const dot = (a, b) => a.map((x, i) => a[i] * b[i]).reduce((m, n) => m + n);
 
 export const randomBySeed = (seed = 0) => {
   return fract(

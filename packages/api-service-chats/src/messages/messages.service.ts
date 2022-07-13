@@ -29,6 +29,7 @@ export class MessagesService {
       where: { chatId },
       limit,
       offset: (page - 1) * limit,
+      order: [['createdAt', 'DESC']],
     });
 
     return {

@@ -1,7 +1,7 @@
 <script setup>
 import VideosSlider from '../components/VideosSlider.vue';
 import { storeToRefs } from 'pinia';
-import { useVideosStore } from '../stores/videos';
+import { useVideosStore } from '@/stores/videos';
 
 const { repo } = storeToRefs(useVideosStore());
 </script>

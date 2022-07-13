@@ -1,28 +1,21 @@
 import { defineStore } from 'pinia';
-import { useRepository } from '../services/useRepository';
+import { useRepository } from '@/services/useRepository';
 import { computed, ref, toRefs } from 'vue';
 import { DateTime } from 'luxon';
-import { randomBySeed } from '../utils/math';
-
-const messagesMock = Array(5000).fill(0).map((_, i) => ({
-  id: i + 1,
-  text: 'Text #' + (i + 1),
-  chatId: Math.round(1 + 50 * randomBySeed(i + 1.5672)),
-  userId: Math.round(1 + 1 * randomBySeed(i + 2.1234)),
-  createdAt: DateTime.local().minus({ days: i }).toJSDate(),
-}));
+import { request } from '@/services/request';
+import { sortByDate } from '@/utils/date';
 
 export const useMessagesStore = defineStore('messages', () => {
   const chatId = ref(null);
   const repo = useRepository({
     async fetchData ({ page }) {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      const limit = 20;
-      const messagesInChat = messagesMock.filter(m => m.chatId === chatId.value);
+      const {
+        data: { data, total },
+      } = await request.get(`/chats/${chatId.value}/messages`, { page });
 
       return {
-        total: messagesInChat.length,
-        data: messagesInChat.slice((page - 1) * limit, page * limit),
+        data,
+        total,
       };
     },
   });
@@ -41,27 +34,45 @@ export const useMessagesStore = defineStore('messages', () => {
     isEnd,
   } = toRefs(state);
 
-  const messagesSorted = computed(() => {
-    return messages.value.sort((a, b) => {
-      return DateTime.fromISO(a.createdAt) - DateTime.fromISO(b.createdAt);
+  const messagesByDays = computed(() => {
+    const messagesByDays = {};
+
+    messages.value.forEach(message => {
+      const date = DateTime.fromISO(message.createdAt).toFormat('yyyy-MM-dd');
+      if (!messagesByDays[date]) {
+        messagesByDays[date] = [];
+      }
+      messagesByDays[date].push(message);
     });
-  });
+
+    const groups = Object.keys(messagesByDays).map((date) => {
+      return {
+        date,
+        messages: sortByDate(messagesByDays[date], 'createdAt'),
+      };
+    });
+
+    return sortByDate(groups, 'date');
+  })
+
+  const errorHandler = (error) => {
+    console.error(error);
+    alert('Something went wrong');
+    throw error;
+  };
 
   const sendMessage = async (text) => {
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    messages.value.push({
-      id: messages.value.length + 1,
-      text,
-      chatId: chatId.value,
-      userId: 1,
-      createdAt: DateTime.local().toISO(),
-    });
+    const { data: { data } } = await request
+      .post(`/chats/${chatId.value}/messages`, { text })
+      .catch(errorHandler);
+
+    messages.value.push(data);
   };
 
   return {
     chatId,
     messages,
-    messagesSorted,
+    messagesByDays,
     isLoading,
     total,
     isEnd,

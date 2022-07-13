@@ -1,5 +1,7 @@
 'use strict';
 
+const { DateTime } = require('luxon')
+
 module.exports = {
   async up (queryInterface, Sequelize) {
     const data = [];
@@ -11,11 +13,15 @@ module.exports = {
       const chatId = ++lastChatId;
 
       const chatUsers = [userId, companionId].map((userId) => ({ chatId, userId }));
-      const messages = Array(100).fill(0).map(() => ({
-        text: `Message ${++lastMessageId}`,
-        chatId,
-        userId: chatUsers[Math.floor(Math.random() * 2)].userId,
-      }));
+      const messages = Array(100).fill(0).map(() => {
+        const messageId = ++lastMessageId;
+        return {
+          text: `Message ${messageId}`,
+          chatId,
+          userId: chatUsers[Math.floor(Math.random() * 2)].userId,
+          createdAt: DateTime.local().minus({ month: 2 }).plus({ day: Math.floor(Math.random() * 30) }).toJSDate(),
+        }
+      });
 
       data.push({
         chatUsers,

@@ -32,6 +32,12 @@ export class ChatsService {
           as: 'lastMessage',
         }],
       }],
+      order: [[
+        { model: this.chatModel, as: 'chat' },
+        { model: this.messageModel, as: 'lastMessage' },
+        'createdAt',
+        'ASC',
+      ]],
       limit,
       offset: (page - 1) * limit,
     });

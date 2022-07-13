@@ -17,7 +17,7 @@ export class MessagesController {
     @Payload('chatId') chatId: number,
     @Payload('page') page: number,
     @Payload('limit') limit: number,
-    @Payload('limit') userId: number,
+    @Payload('userId') userId: number,
   ) {
     return this.messagesService.findByChatId({ chatId, page, limit, userId });
   }

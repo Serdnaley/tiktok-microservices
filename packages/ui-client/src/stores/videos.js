@@ -1,26 +1,18 @@
 import { defineStore } from 'pinia';
 import { ref, toRefs } from 'vue';
-import videosMock from '../services/videosMock.json';
-import { useRepository } from '../services/useRepository';
-
-const videosRepo = videosMock.map((url, i) => ({
-  id: i + 1,
-  title: 'Video 1',
-  description: 'This is a video 1',
-  file: {
-    id: i + 1,
-    url,
-  },
-}));
+import { useRepository } from '@/services/useRepository';
+import { request } from '@/services/request';
 
 export const useVideosStore = defineStore('videos', () => {
   const repo = useRepository({
     async fetchData ({ page }) {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      const limit = 50;
+      const {
+        data: { data, total },
+      } = await request.get('/videos', { page });
+
       return {
-        data: videosRepo.slice((page - 1) * limit, page * limit),
-        total: videosRepo.length,
+        data,
+        total,
       };
     },
   });

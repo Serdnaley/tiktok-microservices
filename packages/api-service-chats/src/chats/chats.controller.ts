@@ -24,8 +24,8 @@ export class ChatsController {
   @MessagePattern('findOneChatById')
   findOne (
     @Payload('chatId') chatId: number,
-    @Request() req,
+    @Payload('userId') userId: number,
   ) {
-    return this.chatsService.findOne(chatId, req.user.id);
+    return this.chatsService.findOne(chatId, userId);
   }
 }

@@ -1,7 +1,7 @@
 <script setup>
-import { useAuthStore } from '../stores/auth';
+import { useAuthStore } from '@/stores/auth';
 import { storeToRefs } from 'pinia';
-import { useVideosStore } from '../stores/videos';
+import { useVideosStore } from '@/stores/videos';
 import Button from '../components/Button.vue';
 
 const { profile } = storeToRefs(useAuthStore());
